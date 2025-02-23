@@ -6,30 +6,26 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.pager.HorizontalPager
-import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.operatorbz2.R
 import com.example.operatorbz2.app.App
 import com.example.operatorbz2.ui.theme.viewmodels.GeneralViewModel
 import com.example.operatorbz2.utils.Factory
-import kotlinx.coroutines.launch
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
@@ -41,14 +37,11 @@ fun TabScreen(
         App.appComponent.generalComponent().viewModel()
     })
 ) {
-    val scope = rememberCoroutineScope()
-    val pageState = rememberPagerState(pageCount = { 3 })
-    val selectedTabIndex = remember { derivedStateOf { pageState.currentPage } }
-    val itemList = viewModel.observeUi().value.items
-    viewModel.setFirstList()
+    var selectedTabIndex by remember { mutableIntStateOf(0) }
+    val itemList by viewModel.observeUi().collectAsState()
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text(text = "Home") }) }
+        topBar = { TopAppBar(title = { Text(text = stringResource(R.string.top_name)) }) }
     ) {
         Column(
             modifier = Modifier
@@ -56,56 +49,44 @@ fun TabScreen(
                 .padding(top = it.calculateTopPadding())
         ) {
             TabRow(
-                selectedTabIndex = selectedTabIndex.value,
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                selectedTabIndex = selectedTabIndex,
             ) {
-                HomeTabs.entries.forEachIndexed { index, currentTab ->
-                    Tab(
-                        selected = selectedTabIndex.value == index,
-                        selectedContentColor = MaterialTheme.colorScheme.primary,
-                        unselectedContentColor = MaterialTheme.colorScheme.outline,
-                        onClick = {
-                            scope.launch {
-                                pageState.animateScrollToPage(currentTab.ordinal)
-                            }
-                        },
-                        text = { Text(text = currentTab.text) }
-                    )
+                Tab(
+                    selected = selectedTabIndex == 0,
+                    onClick = { selectedTabIndex = 0 },
+                    text = { Text("Хим.растворы") }
+                )
+                Tab(
+                    selected = selectedTabIndex == 1,
+                    onClick = { selectedTabIndex = 1 },
+                    text = { Text("Тех.операции") }
+                )
+                Tab(
+                    selected = selectedTabIndex == 2,
+                    onClick = { selectedTabIndex = 2 },
+                    text = { Text("Заметки") }
+                )
+            }
+
+            when (selectedTabIndex) {
+                0 -> LazyColumn {
+                    viewModel.setFirstList()
+                    val items = itemList.items
+                    items(items.size) {index ->
+                        val item = items[index]
+                        ListItem(item)
+                    }
                 }
-            }
-            when (selectedTabIndex.value) {
-                0 -> viewModel.setFirstList()
-                1 -> viewModel.setSecondList()
-            }
-        }
-        HorizontalPager(
-            state = pageState,
-            modifier = Modifier
-                .fillMaxWidth()
-        ) {
-            LazyColumn(
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                itemsIndexed(itemList) { _, item ->
-                    ListItem(item)
+                1 -> LazyColumn {
+                    viewModel.setSecondList()
+                    val items = itemList.items
+                    items(items.size) {index ->
+                        val item = items[index]
+                        ListItem(item)
+                    }
                 }
             }
         }
     }
-}
-
-
-enum class HomeTabs(
-    val text: String
-) {
-    Chemistry(
-        text = "Хим.растворы"
-    ),
-    Technical(
-        text = "Тех.операции"
-    ),
-    Notes(
-        text = "Заметки"
-    )
 }

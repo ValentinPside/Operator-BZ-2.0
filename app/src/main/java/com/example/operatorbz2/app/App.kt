@@ -6,7 +6,10 @@ import com.example.operatorbz2.di.DaggerAppComponent
 
 class App : Application() {
 
-    private val appComponent = DaggerAppComponent.factory().create(this)
+    override fun onCreate() {
+        super.onCreate()
+        appComponent = DaggerAppComponent.factory().create(this)
+    }
 
 
     companion object {
