@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.operatorbz2.ui.theme.OperatorBZ2Theme
+import com.example.operatorbz2.ui.theme.screens.TabScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +20,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             OperatorBZ2Theme {
-
+                TabScreen()
             }
         }
     }
