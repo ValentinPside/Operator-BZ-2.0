@@ -28,8 +28,8 @@ class MainActivity : ComponentActivity() {
                         "text_screen/{itemId}",
                         arguments = listOf(navArgument("itemId") { type = NavType.StringType })
                     ) { it ->
-                        val itemId = it.arguments?.getString("itemId") ?: ""
-                        TextScreen(itemId = itemId)
+                        val itemId = it.arguments?.getString("itemId") ?: "A0"
+                        TextScreen(navController = navController ,itemId = itemId)
                     }
                 }
             }
