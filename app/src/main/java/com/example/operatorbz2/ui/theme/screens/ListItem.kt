@@ -19,14 +19,15 @@ import com.example.operatorbz2.domain.Item
 
 @Composable
 fun ListItem(
-    item: Item
+    item: Item,
+    onClick: (String) -> Unit,
 ) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
             .clickable {
-
+                onClick(item.id)
             }
     ) {
         Row(

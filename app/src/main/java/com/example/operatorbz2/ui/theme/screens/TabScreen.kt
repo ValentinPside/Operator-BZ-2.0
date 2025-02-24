@@ -20,11 +20,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import com.example.operatorbz2.R
 import com.example.operatorbz2.app.App
-import com.example.operatorbz2.ui.theme.OperatorBZ2Theme
 import com.example.operatorbz2.ui.theme.viewmodels.GeneralViewModel
 import com.example.operatorbz2.utils.Factory
 
@@ -33,6 +32,7 @@ import com.example.operatorbz2.utils.Factory
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TabScreen(
+    navController: NavHostController,
     viewModel: GeneralViewModel = viewModel(factory = Factory {
         App.appComponent.generalComponent().viewModel()
     })
@@ -75,7 +75,10 @@ fun TabScreen(
                     val items = itemListState.items
                     items(items.size) { index ->
                         val item = items[index]
-                        ListItem(item)
+                        ListItem(item,
+                            onClick = {
+                                navController.navigate("text_screen/${item.id}")
+                            })
                     }
                 }
 
@@ -84,7 +87,10 @@ fun TabScreen(
                     val items = itemListState.items
                     items(items.size) { index ->
                         val item = items[index]
-                        ListItem(item)
+                        ListItem(item,
+                            onClick = {
+                                navController.navigate("text_screen/${item.id}")
+                            })
                     }
                 }
             }

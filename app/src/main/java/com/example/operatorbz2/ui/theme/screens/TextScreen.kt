@@ -31,13 +31,14 @@ fun TextScreen(
     })
 ) {
     val scrollState = rememberScrollState()
-    val itemState by viewModel.observeUi().collectAsState()
     viewModel.getItem(itemId)
+    val itemState by viewModel.observeUi().collectAsState()
     val item = itemState.item
 
-    Column(modifier = Modifier
-        .padding(16.dp)
-        .verticalScroll(scrollState)
+    Column(
+        modifier = Modifier
+            .padding(16.dp)
+            .verticalScroll(scrollState)
     ) {
         TopAppBar(
             title = { Text(text = stringResource(item.name)) },
