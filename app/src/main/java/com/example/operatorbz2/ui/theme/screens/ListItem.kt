@@ -20,7 +20,7 @@ import com.example.operatorbz2.domain.Item
 @Composable
 fun ListItem(
     item: Item
-){
+) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -28,13 +28,14 @@ fun ListItem(
             .clickable {
 
             }
-    ){
+    ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically
-        ){
-            Image(painter = painterResource(id = item.icon), contentDescription = null,
+        ) {
+            Image(
+                painter = painterResource(id = item.icon), contentDescription = null,
                 modifier = Modifier
                     .clip(CircleShape)
             )

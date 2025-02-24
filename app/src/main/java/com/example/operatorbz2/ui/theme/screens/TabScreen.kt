@@ -24,13 +24,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.operatorbz2.R
 import com.example.operatorbz2.app.App
+import com.example.operatorbz2.ui.theme.OperatorBZ2Theme
 import com.example.operatorbz2.ui.theme.viewmodels.GeneralViewModel
 import com.example.operatorbz2.utils.Factory
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter", "StateFlowValueCalledInComposition")
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
 @Composable
 fun TabScreen(
     viewModel: GeneralViewModel = viewModel(factory = Factory {
@@ -38,7 +38,7 @@ fun TabScreen(
     })
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
-    val itemList by viewModel.observeUi().collectAsState()
+    val itemListState by viewModel.observeUi().collectAsState()
 
     Scaffold(
         topBar = { TopAppBar(title = { Text(text = stringResource(R.string.top_name)) }) }
@@ -72,16 +72,17 @@ fun TabScreen(
             when (selectedTabIndex) {
                 0 -> LazyColumn {
                     viewModel.setFirstList()
-                    val items = itemList.items
-                    items(items.size) {index ->
+                    val items = itemListState.items
+                    items(items.size) { index ->
                         val item = items[index]
                         ListItem(item)
                     }
                 }
+
                 1 -> LazyColumn {
                     viewModel.setSecondList()
-                    val items = itemList.items
-                    items(items.size) {index ->
+                    val items = itemListState.items
+                    items(items.size) { index ->
                         val item = items[index]
                         ListItem(item)
                     }
