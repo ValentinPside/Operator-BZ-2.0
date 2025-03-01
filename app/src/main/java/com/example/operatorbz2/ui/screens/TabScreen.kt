@@ -1,4 +1,4 @@
-package com.example.operatorbz2.ui.theme.screens
+package com.example.operatorbz2.ui.screens
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
@@ -24,7 +24,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.operatorbz2.R
 import com.example.operatorbz2.app.App
-import com.example.operatorbz2.ui.theme.viewmodels.GeneralViewModel
+import com.example.operatorbz2.ui.viewmodels.GeneralViewModel
 import com.example.operatorbz2.utils.Factory
 
 

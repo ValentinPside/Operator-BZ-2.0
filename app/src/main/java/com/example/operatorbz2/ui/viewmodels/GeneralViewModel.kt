@@ -1,4 +1,4 @@
-package com.example.operatorbz2.ui.theme.viewmodels
+package com.example.operatorbz2.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.example.operatorbz2.domain.Item

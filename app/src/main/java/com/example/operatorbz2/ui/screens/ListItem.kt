@@ -1,4 +1,4 @@
-package com.example.operatorbz2.ui.theme.screens
+package com.example.operatorbz2.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background

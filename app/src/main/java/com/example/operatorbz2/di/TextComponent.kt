@@ -1,6 +1,6 @@
 package com.example.operatorbz2.di
 
-import com.example.operatorbz2.ui.theme.viewmodels.TextViewModel
+import com.example.operatorbz2.ui.viewmodels.TextViewModel
 import dagger.Subcomponent
 
 @Subcomponent

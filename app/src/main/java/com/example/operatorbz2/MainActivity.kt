@@ -10,8 +10,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.operatorbz2.ui.theme.OperatorBZ2Theme
-import com.example.operatorbz2.ui.theme.screens.TabScreen
-import com.example.operatorbz2.ui.theme.screens.TextScreen
+import com.example.operatorbz2.ui.screens.TabScreen
+import com.example.operatorbz2.ui.screens.TextScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
