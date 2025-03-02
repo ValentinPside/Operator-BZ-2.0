@@ -1,4 +1,4 @@
-package com.example.operatorbz2
+package com.example.operatorbz2.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity

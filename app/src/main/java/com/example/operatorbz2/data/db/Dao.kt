@@ -16,5 +16,6 @@ interface Dao {
     fun getAllNotes(): Flow<List<NoteEntity>>
 
     @Delete
-    suspend fun deleteItem(noteEntity: NoteEntity)
+    suspend fun deleteNote(noteEntity: NoteEntity)
+
 }

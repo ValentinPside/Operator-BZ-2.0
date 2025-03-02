@@ -1,11 +1,17 @@
 package com.example.operatorbz2.data
 
 import com.example.operatorbz2.R
+import com.example.operatorbz2.data.db.MainDb
 import com.example.operatorbz2.domain.Item
+import com.example.operatorbz2.domain.Note
 import com.example.operatorbz2.domain.Repository
+import com.example.operatorbz2.utils.asNoteEntity
+import com.example.operatorbz2.utils.asNoteList
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
-class RepositoryImpl @Inject constructor() : Repository {
+class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
     override fun getFirstList(): List<Item> {
         return listOf(
             Item("A0", R.string.gidroName, R.drawable.hidro, R.string.gidroText),
@@ -38,5 +44,21 @@ class RepositoryImpl @Inject constructor() : Repository {
             Item("B4", R.string.osvFiltersName, R.drawable.osv, R.string.osvFiltersText),
             Item("B5", R.string.contactorsName, R.drawable.contactors, R.string.contactorsText)
         )
+    }
+
+    override suspend fun createNewNote(note: Note) {
+        val noteEntity = note.asNoteEntity()
+        db.dao().upsertTaskTable(noteEntity)
+    }
+
+    override fun getAllNotes(): Flow<List<Note>> {
+        return db.dao().getAllNotes().map {
+            it.asNoteList()
+        }
+    }
+
+    override suspend fun deleteNote(note: Note) {
+        val noteEntity = note.asNoteEntity()
+        db.dao().deleteNote(noteEntity)
     }
 }
