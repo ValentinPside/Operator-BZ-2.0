@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.operatorbz2.ui.screens.NewNoteScreen
 import com.example.operatorbz2.ui.theme.OperatorBZ2Theme
 import com.example.operatorbz2.ui.screens.TabScreen
 import com.example.operatorbz2.ui.screens.TextScreen
@@ -30,6 +31,9 @@ class MainActivity : ComponentActivity() {
                     ) { it ->
                         val itemId = it.arguments?.getString("itemId") ?: "A0"
                         TextScreen(navController = navController ,itemId = itemId)
+                    }
+                    composable("new_note_screen") {
+                        NewNoteScreen()
                     }
                 }
             }
