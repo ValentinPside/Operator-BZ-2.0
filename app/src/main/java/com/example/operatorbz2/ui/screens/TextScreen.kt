@@ -71,7 +71,8 @@ fun TextScreen(
         )
         Text(
             text = stringResource(item.text),
-            modifier = Modifier.padding(top = 4.dp, bottom = 16.dp)
+            modifier = Modifier
+                .padding(top = 4.dp, bottom = 16.dp)
                 .fillMaxSize(),
             textAlign = TextAlign.Unspecified
         )

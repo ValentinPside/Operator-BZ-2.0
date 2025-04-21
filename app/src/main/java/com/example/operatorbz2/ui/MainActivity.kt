@@ -33,7 +33,7 @@ class MainActivity : ComponentActivity() {
                         TextScreen(navController = navController ,itemId = itemId)
                     }
                     composable("new_note_screen") {
-                        NewNoteScreen()
+                        NewNoteScreen(navController = navController)
                     }
                 }
             }

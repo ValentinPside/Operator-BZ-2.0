@@ -18,6 +18,8 @@ interface AppComponent {
 
     fun textComponent(): TextComponent
 
+    fun newNoteComponent(): NewNoteComponent
+
     @Component.Factory
     interface AppComponentFactory {
         fun create(@BindsInstance context: Context): AppComponent
