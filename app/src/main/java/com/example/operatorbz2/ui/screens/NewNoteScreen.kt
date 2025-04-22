@@ -1,6 +1,7 @@
 package com.example.operatorbz2.ui.screens
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -45,6 +47,8 @@ fun NewNoteScreen(
     var noteContent by remember { mutableStateOf("") }
 
     val composableScope = rememberCoroutineScope()
+
+    val context = LocalContext.current
 
     Scaffold(
         topBar = {
@@ -89,7 +93,10 @@ fun NewNoteScreen(
                         onClick = {
                             composableScope.launch {
                                 viewModel.saveNewNote(noteTitle, noteContent)
+                                Toast.makeText(context, "Заметка сохранена", Toast.LENGTH_SHORT).show()
                             }
+                            navController.popBackStack()
+
                         },
                         modifier = Modifier
                             .fillMaxWidth()

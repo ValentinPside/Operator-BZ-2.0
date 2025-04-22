@@ -22,5 +22,5 @@ class NewNoteViewModel @Inject constructor(
 
 
 data class NewNoteState(
-    val text: String = "",
+    val text: String = ""
 )
