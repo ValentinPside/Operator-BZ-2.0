@@ -6,6 +6,6 @@ interface Repository {
     fun getFirstList(): List<Item>
     fun getSecondList(): List<Item>
     suspend fun createNewNote(note: Note)
-    fun getAllNotes(): Flow<List<Note>>
+    suspend fun getAllNotes(): List<Note>
     suspend fun deleteNote(note: Note)
 }

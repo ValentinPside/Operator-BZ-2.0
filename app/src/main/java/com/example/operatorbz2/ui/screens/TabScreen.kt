@@ -20,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -30,6 +31,7 @@ import com.example.operatorbz2.R
 import com.example.operatorbz2.app.App
 import com.example.operatorbz2.ui.viewmodels.GeneralViewModel
 import com.example.operatorbz2.utils.Factory
+import kotlinx.coroutines.launch
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -42,6 +44,7 @@ fun TabScreen(
 ) {
     var selectedTabIndex by remember { mutableIntStateOf(0) }
     val itemListState by viewModel.observeUi().collectAsStateWithLifecycle()
+    val composableScope = rememberCoroutineScope()
 
     Scaffold(
         topBar = {
@@ -107,6 +110,22 @@ fun TabScreen(
                         ListItem(item,
                             onClick = {
                                 navController.navigate("text_screen/${item.id}")
+                            })
+                    }
+                }
+
+                2 -> LazyColumn {
+                    composableScope.launch {
+                        viewModel.setThirdList()
+                    }
+                    val notes = itemListState.notes
+                    items(notes.size) { index ->
+                        val note = notes[index]
+                        NoteItem(note,
+                            onClickDelete = {
+                                composableScope.launch {
+                                    viewModel.deleteNote(note)
+                                }
                             })
                     }
                 }

@@ -4,7 +4,6 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Query
 import androidx.room.Upsert
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface Dao {
@@ -13,7 +12,7 @@ interface Dao {
     suspend fun upsertTaskTable(taskEntity: NoteEntity)
 
     @Query("SELECT * FROM noteTable")
-    fun getAllNotes(): Flow<List<NoteEntity>>
+    suspend fun getAllNotes(): List<NoteEntity>
 
     @Delete
     suspend fun deleteNote(noteEntity: NoteEntity)

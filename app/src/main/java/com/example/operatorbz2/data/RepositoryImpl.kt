@@ -51,10 +51,8 @@ class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
         db.dao().upsertTaskTable(noteEntity)
     }
 
-    override fun getAllNotes(): Flow<List<Note>> {
-        return db.dao().getAllNotes().map {
-            it.asNoteList()
-        }
+    override suspend fun getAllNotes(): List<Note> {
+        return db.dao().getAllNotes().asNoteList()
     }
 
     override suspend fun deleteNote(note: Note) {
