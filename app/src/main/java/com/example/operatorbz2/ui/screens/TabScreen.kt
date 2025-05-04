@@ -126,6 +126,9 @@ fun TabScreen(
                                 composableScope.launch {
                                     viewModel.deleteNote(note)
                                 }
+                            },
+                            onClick = {
+                                navController.navigate("note_screen/${note.id}")
                             })
                     }
                 }

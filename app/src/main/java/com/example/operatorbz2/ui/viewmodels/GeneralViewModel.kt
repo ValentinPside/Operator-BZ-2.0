@@ -1,17 +1,12 @@
 package com.example.operatorbz2.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.operatorbz2.domain.Item
 import com.example.operatorbz2.domain.Note
 import com.example.operatorbz2.domain.Repository
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class GeneralViewModel @Inject constructor(

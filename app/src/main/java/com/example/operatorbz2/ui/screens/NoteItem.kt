@@ -1,5 +1,6 @@
 package com.example.operatorbz2.ui.screens
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,12 +19,16 @@ import com.example.operatorbz2.domain.Note
 @Composable
 fun NoteItem(
     note: Note,
-    onClickDelete: (Note) -> Unit
+    onClickDelete: (Note) -> Unit,
+    onClick: (Int) -> Unit
 ){
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .padding(8.dp)
+            .clickable {
+                onClick(note.id)
+            }
     ){
         Row(
             modifier = Modifier

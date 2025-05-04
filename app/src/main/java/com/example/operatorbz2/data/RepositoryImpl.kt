@@ -5,6 +5,7 @@ import com.example.operatorbz2.data.db.MainDb
 import com.example.operatorbz2.domain.Item
 import com.example.operatorbz2.domain.Note
 import com.example.operatorbz2.domain.Repository
+import com.example.operatorbz2.utils.asNote
 import com.example.operatorbz2.utils.asNoteEntity
 import com.example.operatorbz2.utils.asNoteList
 import kotlinx.coroutines.flow.Flow
@@ -58,5 +59,9 @@ class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
     override suspend fun deleteNote(note: Note) {
         val noteEntity = note.asNoteEntity()
         db.dao().deleteNote(noteEntity)
+    }
+
+    override suspend fun getNote(id: Int): Note {
+        return db.dao().getNote(id).asNote()
     }
 }

@@ -3,6 +3,7 @@ package com.example.operatorbz2.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import com.example.operatorbz2.R
 import com.example.operatorbz2.domain.Item
+import com.example.operatorbz2.domain.Note
 import com.example.operatorbz2.domain.Repository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -31,9 +32,17 @@ class TextViewModel @Inject constructor(
             }
         }
     }
+
+    suspend fun getNote(id: Int){
+        val note = repository.getNote(id)
+        state.update {
+            it.copy(note = note)
+        }
+    }
 }
 
 
 data class ViewStateText(
-    val item: Item = Item("", R.string.string_holder, 0, R.string.string_holder)
+    val item: Item = Item("", R.string.string_holder, 0, R.string.string_holder),
+    val note: Note = Note(-1, "", "")
 )
