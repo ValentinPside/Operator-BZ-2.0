@@ -25,7 +25,7 @@ class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
                 R.drawable.bis_for_cons,
                 R.string.conservatoinText
             ),
-            Item("A7", R.string.natrWashName, R.drawable.natr_wash, R.string.natrWashText)
+            Item("A7", R.string.natrWashName, R.drawable.natr_wash, R.string.natrWashText),
         )
     }
 
@@ -41,7 +41,8 @@ class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
             ),
             Item("B3", R.string.fsdName, R.drawable.fsd, R.string.fsdText),
             Item("B4", R.string.osvFiltersName, R.drawable.osv, R.string.osvFiltersText),
-            Item("B5", R.string.contactorsName, R.drawable.contactors, R.string.contactorsText)
+            Item("B5", R.string.contactorsName, R.drawable.contactors, R.string.contactorsText),
+            Item("B6", R.string.nasos, R.drawable.nasos, R.string.nasosText)
         )
     }
 

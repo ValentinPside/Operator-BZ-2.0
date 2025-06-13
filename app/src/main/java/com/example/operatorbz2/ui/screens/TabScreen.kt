@@ -1,8 +1,10 @@
 package com.example.operatorbz2.ui.screens
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
@@ -24,6 +26,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -75,12 +78,12 @@ fun TabScreen(
                 Tab(
                     selected = selectedTabIndex == 0,
                     onClick = { selectedTabIndex = 0 },
-                    text = { Text("Хим.растворы") }
+                    text = { Text("Химия") }
                 )
                 Tab(
                     selected = selectedTabIndex == 1,
                     onClick = { selectedTabIndex = 1 },
-                    text = { Text("Тех.операции") }
+                    text = { Text("Техника") }
                 )
                 Tab(
                     selected = selectedTabIndex == 2,
@@ -100,6 +103,9 @@ fun TabScreen(
                                 navController.navigate("text_screen/${item.id}")
                             })
                     }
+                    item {
+                        Spacer(modifier = Modifier.height(40.dp))
+                    }
                 }
 
                 1 -> LazyColumn {
@@ -111,6 +117,9 @@ fun TabScreen(
                             onClick = {
                                 navController.navigate("text_screen/${item.id}")
                             })
+                    }
+                    item {
+                        Spacer(modifier = Modifier.height(40.dp))
                     }
                 }
 
@@ -130,6 +139,9 @@ fun TabScreen(
                             onClick = {
                                 navController.navigate("note_screen/${note.id}")
                             })
+                    }
+                    item {
+                        Spacer(modifier = Modifier.height(40.dp))
                     }
                 }
             }

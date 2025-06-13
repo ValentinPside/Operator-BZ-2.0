@@ -32,13 +32,6 @@ class TextViewModel @Inject constructor(
             }
         }
     }
-
-    suspend fun getNote(id: Int){
-        val note = repository.getNote(id)
-        state.update {
-            it.copy(note = note)
-        }
-    }
 }
 
 
