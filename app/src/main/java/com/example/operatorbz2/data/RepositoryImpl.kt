@@ -8,8 +8,6 @@ import com.example.operatorbz2.domain.Repository
 import com.example.operatorbz2.utils.asNote
 import com.example.operatorbz2.utils.asNoteEntity
 import com.example.operatorbz2.utils.asNoteList
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(private val db: MainDb) : Repository {
